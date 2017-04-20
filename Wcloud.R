@@ -16,6 +16,12 @@ library(RColorBrewer)
 tweets_raw = searchTwitter(search_term, n=sample_size, lang=language)
 ####### EDIT THE PREVIOUS LINE TO SPECIFY SEARCH
 
+############  CREATE DATA FRAME ##########################
+DF = twListToDF(tweets_raw)
+# TO SAVE: write.csv(DF,file='mongodb_tweets.csv', sep=',', header=TRUE)
+# TO READ: DF <- read.csv(file='mongodb_tweets.csv', sep=',', header=TRUE)
+##########################################################
+
 # NEXT TWO LINES REMOVES META-DATA THEN CONVERTS DATA TO A NEEDED FORMAT
 tweets_text = sapply(tweets_raw, function(x) x$getText())
 tweets_corpus = Corpus(VectorSource(tweets_text))
