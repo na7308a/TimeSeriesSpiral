@@ -1,3 +1,5 @@
+# TO GENERATE YOUR OWN TWEETS, COPY THIS FILE TO 'my_access.R' AND PUT IN YOUR PASSWORDS
+
 consumer_key <- "paste-your-consumer-key-here"
 consumer_secret <- "paste-your-consumer-secret-here"
 access_token <- "paste-your-access-token-here"
