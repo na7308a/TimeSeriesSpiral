@@ -40,3 +40,9 @@ tweets_transformed4 <- tm_map(tweets_transformed3,
                               function(x) removeWords(x,stopwords()))
 # NEXT LINE DRAWS WORD CLOUD
 wordcloud(tweets_transformed4)
+
+# TO EXTRACT A VECTOR OF TIME DIFFERENCES
+# USE PACKAGE lubridate
+# PUT THIS INTO A LOOP: dt[i] = yms_hms(DF$created[1]) - yms_hms(DF$created[i])
+# Don't forget to initialize dt
+# FIND A WAY TO PLOT DATA, based on what we have been doing for the last several classes.
