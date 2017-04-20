@@ -17,8 +17,8 @@ tweets_raw = searchTwitter(search_term, n=sample_size, lang=language)
 ####### EDIT THE PREVIOUS LINE TO SPECIFY SEARCH
 
 ############  CREATE DATA FRAME ##########################
-DF = twListToDF(tweets_raw)
-# TO SAVE: write.csv(DF,file='mongodb_tweets.csv', sep=',', header=TRUE)
+DF = twListToDF(tweets_raw) 
+# TO SAVE: write.csv(DF,file='mongodb_tweets.csv')
 # TO READ: DF <- read.csv(file='mongodb_tweets.csv', sep=',', header=TRUE)
 ##########################################################
 
