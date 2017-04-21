@@ -43,6 +43,6 @@ wordcloud(tweets_transformed4)
 
 # TO EXTRACT A VECTOR OF TIME DIFFERENCES
 # USE PACKAGE lubridate
-# PUT THIS INTO A LOOP: dt[i] = yms_hms(DF$created[1]) - yms_hms(DF$created[i])
+# PUT THIS INTO A LOOP: dt[i] = ymd_hms(DF$created[1]) - ymd_hms(DF$created[i])
 # Don't forget to initialize dt
 # FIND A WAY TO PLOT DATA, based on what we have been doing for the last several classes.
