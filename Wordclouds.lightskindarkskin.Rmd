@@ -1,0 +1,67 @@
+## Compassion
+_Compassion_ stems from an open heart.  If you feel compassion, you wish for the freedom from suffering of all sentient beings.  **In compassion lies beauty**.  Let us resolve to help open the heart of the world, and heal our suffering.
+
+## Inspirational image.
+![Beautiful compassion.](compassion.jpeg)
+
+## Word cloud
+Below is a word cloud derived from a sample of 500 recent tweets that include the word "compassion" taken from the twitter archive.  I restricted the search to tweets posted in the month prior to November 8, 2016, election day, and from within 10 miles of the American Univerisity campus.
+
+```{r thewordcloud, results='hide', echo=FALSE, message=FALSE}
+##### EDIT SEARCH PARAMETERS BELOW
+search_term <- "lightskin+darkskin"  # For two terms use e.g. "compassion+love"
+                             # For hashtags use e.g. "#compassion"
+language <- "en"
+sample_size <- 500
+AU_geocode <- '38.9375300,-77.0868600,10mi'  # Latitude, Longitude, Radius
+                                             # Here specifies 10 miles from AU campus
+since <- '2016-10-08'  # Election Day
+until <- '2016-11-08'  # INSERT Until Date, not used here
+##### EDIT SEARCH PARAMETERS ABOVE
+
+# NEXT 4 LINES LOAD LIBRARIES OF FUNCTIONS
+library(twitteR)
+library(tm)
+library(wordcloud)
+library(RColorBrewer)
+
+# NEXT LINE AUTHENTICATES SESSION WITH TWITTER
+source("my_access.R")
+
+####### EDIT THE NEXT LINE TO SPECIFY SEARCH
+tweets_raw = searchTwitter(search_term, 
+                           n=sample_size,
+                           geocode=AU_geocode,
+                           since=since,
+                           until=until,
+                           lang=language)
+####### EDIT THE PREVIOUS LINE TO SPECIFY SEARCH
+
+# NEXT TWO LINES REMOVES META-DATA THEN CONVERTS DATA TO A NEEDED FORMAT
+tweets_text = sapply(tweets_raw, function(x) x$getText())
+tweets_corpus = Corpus(VectorSource(tweets_text))
+
+# NEXT LINE REMOVES SPECIAL CHARACTERS AVAILABLE IN OTHER LANGUAGES
+tweets_transformed1 <- tm_map(tweets_corpus, 
+                               content_transformer(function(x) iconv(x, to="UTF-8")),
+                               mc.cores=1)
+# NEXT LINE CONVERTS EVERYTHING TO LOWER CASE
+tweets_transformed2 <- tm_map(tweets_transformed1,
+                              content_transformer(tolower),
+                              mc.cores=1)
+# NEXT LINE REMOVES PUNCTUATION
+tweets_transformed3 <- tm_map(tweets_transformed2,
+                              removePunctuation,
+                              mc.cores=1)
+# NEXT LINE REMOVES "STOPWORDS" LIKE "THE", "AN", "IS", "BE", ETC.
+tweets_transformed4 <- tm_map(tweets_transformed3,
+                              function(x) removeWords(x,stopwords()),
+                              mc.cores=1)
+
+###### EDIT NEXT LINE TO SPECIFY DRAWING OF WORD CLOUD
+wordcloud(tweets_transformed4, random.order=FALSE, colors=brewer.pal(8,"Dark2"))
+```
+
+## Code
+
+Attached below is the code used to generate this document.  It contains text, markup, and code for connecting with twitter, downloading a sample of tweets, and creating the word cloud.
