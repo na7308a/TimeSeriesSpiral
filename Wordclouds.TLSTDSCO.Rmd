@@ -26,7 +26,7 @@ library(wordcloud)
 library(RColorBrewer)
 
 # NEXT LINE AUTHENTICATES SESSION WITH TWITTER
-source("my_access.R")
+source("Nana_access.R")
 
 ####### EDIT THE NEXT LINE TO SPECIFY SEARCH
 tweets_raw = searchTwitter(search_term, 

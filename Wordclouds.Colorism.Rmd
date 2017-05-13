@@ -9,14 +9,12 @@ Below is a word cloud derived from a sample of 500 recent tweets that include th
 
 ```{r thewordcloud, results='hide', echo=FALSE, message=FALSE}
 ##### EDIT SEARCH PARAMETERS BELOW
-search_term <- "#colorism"  # For two terms use e.g. "compassion+love"
+search_term <-"colorism"  # For two terms use e.g. "compassion+love"
                              # For hashtags use e.g. "#compassion"
 language <- "en"
-sample_size <- 500
-AU_geocode <- '38.9375300,-77.0868600,10mi'  # Latitude, Longitude, Radius
-                                             # Here specifies 10 miles from AU campus
+sample_size <- 5000
 since <- '2016-10-08'  # Election Day
-until <- '2016-11-08'  # INSERT Until Date, not used here
+until <- '2017-05-14'  # INSERT Until Date, not used here
 ##### EDIT SEARCH PARAMETERS ABOVE
 
 # NEXT 4 LINES LOAD LIBRARIES OF FUNCTIONS
@@ -26,12 +24,11 @@ library(wordcloud)
 library(RColorBrewer)
 
 # NEXT LINE AUTHENTICATES SESSION WITH TWITTER
-source("my_access.R")
+source("Nana_access.R")
 
 ####### EDIT THE NEXT LINE TO SPECIFY SEARCH
 tweets_raw = searchTwitter(search_term, 
                            n=sample_size,
-                           geocode=AU_geocode,
                            since=since,
                            until=until,
                            lang=language)
